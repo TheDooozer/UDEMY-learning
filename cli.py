@@ -37,7 +37,7 @@ while True:
             try:
                 user_to_do_list = module_utdl_functions.function_open_list()
                 if user_to_do_list:
-                    module_utdl_functions.function_show_positions(user_to_do_list_arg=user_to_do_list)
+                    module_utdl_functions.function_show_positions(show=user_to_do_list)
                 else:
                     print("The list is empty")
             except FileNotFoundError:
@@ -64,7 +64,7 @@ Type "yes" or "no": ''').lower()
             try:
                 user_to_do_list = module_utdl_functions.function_open_list()
                 if user_to_do_list:
-                    module_utdl_functions.function_show_positions(user_to_do_list_arg=user_to_do_list)
+                    module_utdl_functions.function_show_positions(show=user_to_do_list)
                     if user_input == "complete":
                         remove_number = input("\nComplete position number: ")
                     else:
@@ -91,7 +91,7 @@ Type "yes" or "no": ''').lower()
             try:
                 user_to_do_list = module_utdl_functions.function_open_list()
                 if user_to_do_list:
-                    module_utdl_functions.function_show_positions(user_to_do_list_arg=user_to_do_list)
+                    module_utdl_functions.function_show_positions(show=user_to_do_list)
                     edit_number = input("\nEdit position number: ")
                     edit_number = edit_number.strip()
                     if edit_number.isdigit():

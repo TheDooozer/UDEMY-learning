@@ -14,10 +14,10 @@ def function_save_list(user_to_do_list_arg, filepath=FILEPATH):
         file.writelines(user_to_do_list_arg)
 
 
-def function_show_positions(user_to_do_list_arg):
+def function_show_positions(show):
     """ Show the contents of main .txt file. """
     print("Current positions: ")
-    for number, item in enumerate(user_to_do_list_arg):
+    for number, item in enumerate(show):
         item = item.strip("\n")
         row = f"{number + 1}. {item.capitalize()}"
         print(row)
