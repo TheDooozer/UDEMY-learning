@@ -1,4 +1,4 @@
-FILEPATH = "files/user_to_do_list.txt"
+FILEPATH = "Files/user_to_do_list.txt"
 
 
 def function_open_list(filepath=FILEPATH):

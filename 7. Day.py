@@ -11,11 +11,11 @@ while x == 1:
             new_to_do = new_to_do.strip()
             if new_to_do:
                 new_to_do = new_to_do + "\n"
-                file = open("files/user_to_do_list.txt", "r")
+                file = open("Files/user_to_do_list.txt", "r")
                 user_to_do_list = file.readlines()
                 file.close()
                 user_to_do_list.append(new_to_do)
-                file = open("files/user_to_do_list.txt", "w")
+                file = open("Files/user_to_do_list.txt", "w")
                 file.writelines(user_to_do_list)
                 file.close()
                 print("Position added")
@@ -23,7 +23,7 @@ while x == 1:
                 print("* Incorrect input *")
 
         case "show" | "display":
-            file = open("files/user_to_do_list.txt", "r")
+            file = open("Files/user_to_do_list.txt", "r")
             user_to_do_list = file.readlines()
             file.close()
             if user_to_do_list:
@@ -36,18 +36,18 @@ while x == 1:
                 print("The list is empty")
 
         case "flush":
-            file = open("files/user_to_do_list.txt", "r")
+            file = open("Files/user_to_do_list.txt", "r")
             user_to_do_list = file.readlines()
             file.close()
             user_to_do_list.clear()
-            file = open("files/user_to_do_list.txt", "w")
+            file = open("Files/user_to_do_list.txt", "w")
             file.writelines(user_to_do_list)
             file.close()
             print("List cleared")
 
         case "remove" | "delete" | "complete":
             print("Current positions: ")
-            file = open("files/user_to_do_list.txt", "r")
+            file = open("Files/user_to_do_list.txt", "r")
             user_to_do_list = file.readlines()
             file.close()
             for number, item in enumerate(user_to_do_list):
@@ -62,7 +62,7 @@ while x == 1:
                 remove_number = int(remove_number)
                 if 0 <= remove_number <= len(user_to_do_list):
                     del user_to_do_list[remove_number - 1]
-                    file = open("files/user_to_do_list.txt", "w")
+                    file = open("Files/user_to_do_list.txt", "w")
                     file.writelines(user_to_do_list)
                     file.close()
                     if user_input == "complete":
@@ -76,7 +76,7 @@ while x == 1:
 
         case "edit" | "change":
             print("Current positions:")
-            file = open("files/user_to_do_list.txt", "r")
+            file = open("Files/user_to_do_list.txt", "r")
             user_to_do_list = file.readlines()
             file.close()
             for number, item in enumerate(user_to_do_list):
@@ -87,7 +87,7 @@ while x == 1:
             if 0 <= edit_number <= len(user_to_do_list):
                 edit_entry = input("Replace position with: ") + "\n"
                 user_to_do_list[edit_number - 1] = edit_entry
-                file = open("files/user_to_do_list.txt", "w")
+                file = open("Files/user_to_do_list.txt", "w")
                 file.writelines(user_to_do_list)
                 file.close()
                 print("Position replaced")

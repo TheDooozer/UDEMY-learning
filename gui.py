@@ -1,5 +1,5 @@
 # start with importing desired elements
-import module_utdl_functions
+from Modules import module_utdl_functions
 import PySimpleGUI
 
 # creating various widgets
@@ -8,26 +8,40 @@ input_box = PySimpleGUI.InputText(tooltip="Enter text", key="user_input")
 add_button = PySimpleGUI.Button("Add")
 edit_button = PySimpleGUI.Button("Edit")
 delete_button = PySimpleGUI.Button("Delete")
+exit_button = PySimpleGUI.Button("Exit")
+exit_message = PySimpleGUI.Text("Save and exit?")
+yes_button = PySimpleGUI.Button("Yes")
+no_button = PySimpleGUI.Button("No")
+
+# main workspace
 list_box = PySimpleGUI.Listbox(values=module_utdl_functions.function_open_list(),
                                key="list_of_to_dos",
                                enable_events=True,
-                               size=(62, 15))
+                               size=(44, 15))
 
-# creating a window widget
-main_window = PySimpleGUI.Window("My First App",
-                                 layout=[[label],   # 1st row
-                                         [input_box, add_button, edit_button, delete_button],    # 2nd row
-                                         [list_box]],    # 3rd row
-                                 font=("", 14))    # setting the font
+# window's layout
+layout = [[label, add_button, edit_button, delete_button, exit_button],
+          [input_box],
+          [list_box]]
+
+# exit window pop up
+exit_layout = [[exit_message],
+               [yes_button, no_button]]
+
+# creating a program's window
+main_window = PySimpleGUI.Window("My First App", layout=layout, font=("", 12))
+exit_window = PySimpleGUI.Window("My First App", layout=exit_layout, font=("", 14))
 
 while True:
     # displaying the window
     event, values = main_window.read()
-    print("event:", event)
-    print("all values:", values)
-    print("values of selected dict:", values["list_of_to_dos"])
+    print("1 event:", event)
+    print("2 all values:", values)
+    print("3 user input values:", values["user_input"])
+    print("4 values of selected dict:", values["list_of_to_dos"])
 
     match event:
+        # add
         case "Add":
             user_to_do_list = module_utdl_functions.function_open_list()
             new_to_do = values["user_input"]
@@ -37,32 +51,47 @@ while True:
                 main_window["list_of_to_dos"].update(values=user_to_do_list)
                 main_window["user_input"].update(value="")
 
+        # edit
         case "Edit":
-            to_do_to_edit = values["list_of_to_dos"][0]
-            updated_to_do = values["user_input"]
-            updated_to_do = updated_to_do.strip()
-            if updated_to_do:
-                user_to_do_list = module_utdl_functions.function_open_list()
-                index = user_to_do_list.index(to_do_to_edit)
-                user_to_do_list[index] = updated_to_do + "\n"
-                module_utdl_functions.function_save_list(user_to_do_list)
-                main_window["list_of_to_dos"].update(values=user_to_do_list)
-                main_window["user_input"].update(value="")
+            if values["list_of_to_dos"]:
+                to_do_to_edit = values["list_of_to_dos"][0]
+                updated_to_do = values["user_input"]
+                updated_to_do = updated_to_do.strip()
+                if updated_to_do:
+                    user_to_do_list = module_utdl_functions.function_open_list()
+                    index = user_to_do_list.index(to_do_to_edit)
+                    user_to_do_list[index] = updated_to_do + "\n"
+                    module_utdl_functions.function_save_list(user_to_do_list)
+                    main_window["list_of_to_dos"].update(values=user_to_do_list)
+                    main_window["user_input"].update(value="")
 
+        # display selected position in input box
         case "list_of_to_dos":
             user_to_do_list = module_utdl_functions.function_open_list()
             if user_to_do_list:
                 main_window["user_input"].update(value=values["list_of_to_dos"][0])
 
+        # delete
         case "Delete":
-            to_do_to_delete = values["list_of_to_dos"][0]
-            user_to_do_list = module_utdl_functions.function_open_list()
-            index = user_to_do_list.index(to_do_to_delete)
-            user_to_do_list.pop(index)
-            module_utdl_functions.function_save_list(user_to_do_list)
-            main_window["list_of_to_dos"].update(values=user_to_do_list)
-            main_window["user_input"].update(value="")
+            if values["list_of_to_dos"]:
+                to_do_to_delete = values["list_of_to_dos"][0]
+                user_to_do_list = module_utdl_functions.function_open_list()
+                index = user_to_do_list.index(to_do_to_delete)
+                user_to_do_list.pop(index)
+                module_utdl_functions.function_save_list(user_to_do_list)
+                main_window["list_of_to_dos"].update(values=user_to_do_list)
+                main_window["user_input"].update(value="")
 
+        # exit
+        case "Exit":
+            event, values = exit_window.read()
+            match event:
+                case "Yes":
+                    exit()
+                case "No":
+                    exit_window.close()
+
+        # closing program window with windows X button
         case PySimpleGUI.WIN_CLOSED:
             break
 

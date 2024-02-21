@@ -6,15 +6,15 @@ while x == 1:
 
     if user_input.startswith("add"):
         new_to_do = str(user_input[4:])
-        with open("files/user_to_do_list.txt", "r") as file:
+        with open("Files/user_to_do_list.txt", "r") as file:
             user_to_do_list = file.readlines()
         user_to_do_list.append(new_to_do + "\n")
-        with open("files/user_to_do_list.txt", "w") as file:
+        with open("Files/user_to_do_list.txt", "w") as file:
             file.writelines(user_to_do_list)
         print("Position added")
 
     elif user_input.startswith("show"):
-        with open("files/user_to_do_list.txt", "r") as file:
+        with open("Files/user_to_do_list.txt", "r") as file:
             user_to_do_list = file.readlines()
         if user_to_do_list:
             print("The list currently contains: ")
@@ -30,7 +30,7 @@ while x == 1:
 Type "yes" or "no": ''').lower()
         if user_input == "yes":
             user_to_do_list.clear()
-            with open("files/user_to_do_list.txt", "w") as file:
+            with open("Files/user_to_do_list.txt", "w") as file:
                 file.writelines(user_to_do_list)
             print("List has been cleared")
         elif user_input == "no":
@@ -39,7 +39,7 @@ Type "yes" or "no": ''').lower()
             print("* Incorrect input *")
 
     elif user_input.startswith("remove"):
-        with open("files/user_to_do_list.txt", "r") as file:
+        with open("Files/user_to_do_list.txt", "r") as file:
             user_to_do_list = file.readlines()
         if user_to_do_list:
             print("Current positions: ")
@@ -52,7 +52,7 @@ Type "yes" or "no": ''').lower()
                 remove_number = int(remove_number)
                 if 0 < remove_number <= len(user_to_do_list):
                     del user_to_do_list[remove_number - 1]
-                    with open("files/user_to_do_list.txt", "w") as file:
+                    with open("Files/user_to_do_list.txt", "w") as file:
                         file.writelines(user_to_do_list)
                     print(f"Position {remove_number} removed")
                 else:
@@ -65,7 +65,7 @@ Type "yes" or "no": ''').lower()
     elif user_input.startswith("edit"):
         try:
             edit_number = int(user_input[5:])
-            with open("files/user_to_do_list.txt", "r") as file:
+            with open("Files/user_to_do_list.txt", "r") as file:
                 user_to_do_list = file.readlines()
                 edit_entry = input("Replace position with: ")
                 edit_entry = edit_entry.strip()
@@ -73,7 +73,7 @@ Type "yes" or "no": ''').lower()
                     if edit_entry:
                         edit_entry = edit_entry + '\n'
                         user_to_do_list[edit_number - 1] = edit_entry
-                        with open("files/user_to_do_list.txt", "w") as file:
+                        with open("Files/user_to_do_list.txt", "w") as file:
                             file.writelines(user_to_do_list)
                         print("Position replaced")
                         print("New position: ", edit_entry.strip("\n"))

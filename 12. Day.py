@@ -28,15 +28,15 @@ while True:
             new_to_do = new_to_do.strip()
             if new_to_do:
                 new_to_do = new_to_do + "\n"
-                user_to_do_list = function_open_list(filepath="files/user_to_do_list.txt")
+                user_to_do_list = function_open_list(filepath="Files/user_to_do_list.txt")
                 user_to_do_list.append(new_to_do)
-                function_save_list(filepath="files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
+                function_save_list(filepath="Files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
                 print("Position added")
             else:
                 print("* Incorrect input *")
 
         case "show" | "display":
-            user_to_do_list = function_open_list(filepath="files/user_to_do_list.txt")
+            user_to_do_list = function_open_list(filepath="Files/user_to_do_list.txt")
             if user_to_do_list:
                 function_show_positions()
             else:
@@ -46,9 +46,9 @@ while True:
             user_input = input('''Do you want to remove current list?
 Type "yes" or "no": ''').lower()
             if user_input == "yes":
-                user_to_do_list = function_open_list(filepath="files/user_to_do_list.txt")
+                user_to_do_list = function_open_list(filepath="Files/user_to_do_list.txt")
                 user_to_do_list.clear()
-                function_save_list(filepath="files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
+                function_save_list(filepath="Files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
                 print("List has been cleared")
             elif user_input == "no":
                 print("List has not been cleared")
@@ -56,7 +56,7 @@ Type "yes" or "no": ''').lower()
                 print("* Incorrect input *")
 
         case "remove" | "delete" | "complete":
-            user_to_do_list = function_open_list(filepath="files/user_to_do_list.txt")
+            user_to_do_list = function_open_list(filepath="Files/user_to_do_list.txt")
             if user_to_do_list:
                 function_show_positions()
                 if user_input == "complete":
@@ -67,7 +67,7 @@ Type "yes" or "no": ''').lower()
                     remove_number = int(remove_number)
                     try:
                         del user_to_do_list[remove_number - 1]
-                        function_save_list(filepath="files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
+                        function_save_list(filepath="Files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
                         if user_input == "complete":
                             print(f"Position {remove_number} completed")
                         else:
@@ -80,7 +80,7 @@ Type "yes" or "no": ''').lower()
                 print("The list is empty")
 
         case "edit" | "change":
-            user_to_do_list = function_open_list(filepath="files/user_to_do_list.txt")
+            user_to_do_list = function_open_list(filepath="Files/user_to_do_list.txt")
             if user_to_do_list:
                 function_show_positions()
                 edit_number = input("\nEdit position number: ")
@@ -93,7 +93,7 @@ Type "yes" or "no": ''').lower()
                         if edit_entry:
                             edit_entry = edit_entry + '\n'
                             user_to_do_list[edit_number - 1] = edit_entry
-                            function_save_list(filepath="files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
+                            function_save_list(filepath="Files/user_to_do_list.txt", user_to_do_list_arg=user_to_do_list)
                             print("Position replaced")
                             print("New position:", edit_entry.strip("\n").capitalize())
                         else:

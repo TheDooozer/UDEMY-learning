@@ -29,7 +29,7 @@ while True:
     mood = get_mood()
     entry = get_diary()
 
-    with open(f"files/{date}.txt", "w") as file:
+    with open(f"Files/{date}.txt", "w") as file:
         file.writelines("Today's date is " + date + "\n")
         file.writelines("Mood rating is " + mood + "\n" + "\n")
         file.writelines(entry)

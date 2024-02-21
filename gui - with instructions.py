@@ -1,5 +1,5 @@
 # start with importing desired elements
-import module_utdl_functions
+from Modules import module_utdl_functions
 import PySimpleGUI
 
 # creating various widgets

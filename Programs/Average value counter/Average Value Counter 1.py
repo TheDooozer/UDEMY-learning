@@ -1,5 +1,5 @@
 def get_average():
-    with open("../files/xD.txt", 'r') as file:
+    with open("../Files/xD.txt", 'r') as file:
         data = file.readlines()
 
     values = data[1:]

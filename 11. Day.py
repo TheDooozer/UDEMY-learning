@@ -1,11 +1,11 @@
 def open_list():
-    with open("files/user_to_do_list.txt", "r") as file_local:
+    with open("Files/user_to_do_list.txt", "r") as file_local:
         user_to_do_list_local = file_local.readlines()
     return user_to_do_list_local
 
 
 def save_list():
-    with open("files/user_to_do_list.txt", "w") as file_local:
+    with open("Files/user_to_do_list.txt", "w") as file_local:
         file_local.writelines(user_to_do_list)
 
 

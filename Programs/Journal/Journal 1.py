@@ -39,7 +39,7 @@ while True:
 
 #if user_input:
 #    print(user_input)
-#    with open("files/journal.txt", "r") as file:
+#    with open("Files/journal.txt", "r") as file:
 #        user_journal = file.readlines()
 
 

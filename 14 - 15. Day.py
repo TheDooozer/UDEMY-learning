@@ -1,4 +1,4 @@
-import module_utdl_functions
+from Modules import module_utdl_functions
 import time
 
 current_time = time.strftime("%d.%m.%Y, %H:%M")
